@@ -1,0 +1,147 @@
+
+
+.progress {
+/* overflow:hidden */
+}
+
+.progress>div {
+	position: absolute;
+	height: 7px;
+	width: 7px;
+	background-color: #696969;
+	z-index: 100;
+	border-radius: 50%;
+}
+
+.progress>img {
+	position: absolute
+}
+
+.progress {
+	position: absolute;
+	top: 0;
+	height: 8px;
+	width: 100%;
+}
+
+.progress>div {
+	-webkit-animation: progressDot 2.5s ease-in 0s infinite;
+	-moz-animation: progressDot 2.5s ease-in 0s infinite;
+	-o-animation: progressDot 2.5s ease-in 0s infinite;
+	animation: progressDot 2.5s ease-in 0s infinite;
+}
+
+.progress>div:nth-child(2) {
+	-webkit-animation-delay: .1s;
+	-moz-animation-delay: .1s;
+	-o-animation-delay: .1s;
+	animation-delay: .1s
+}
+
+.progress>div:nth-child(3) {
+	-webkit-animation-delay: .2s;
+	-moz-animation-delay: .2s;
+	-o-animation-delay: .2s;
+	animation-delay: .2s
+}
+
+.progress>div:nth-child(4) {
+	-webkit-animation-delay: .3s;
+	-moz-animation-delay: .3s;
+	-o-animation-delay: .3s;
+	animation-delay: .3s
+}
+
+.progress>div:nth-child(5) {
+	-webkit-animation-delay: .4s;
+	-moz-animation-delay: .4s;
+	-o-animation-delay: .4s;
+	animation-delay: .4s
+}
+
+.progress>div:nth-child(6) {
+	-webkit-animation-delay: .5s;
+	-moz-animation-delay: .5s;
+	-o-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+@-webkit-keyframes progressDot {
+	from {
+		left: 0%;
+		-webkit-animation-timing-function: ease-in
+	}
+
+	40% {
+		left: 33%
+	}
+
+	70% {
+		left: 33%;
+		-webkit-animation-timing-function: ease-out
+	}
+
+	to {
+		left: 100%
+	}
+}
+
+@-moz-keyframes progressDot {
+	from {
+		left: 0%;
+		-moz-animation-timing-function: ease-in
+	}
+
+	40% {
+		left: 33%
+	}
+
+	70% {
+		left: 33%;
+		-moz-animation-timing-function: ease-out
+	}
+
+	to {
+		left: 100%
+	}
+}
+
+@-o-keyframes progressDot {
+	from {
+		left: 0%;
+		-o-animation-timing-function: ease-in;
+	}
+
+	40% {
+		left: 33%;
+	}
+
+	70% {
+		left: 33%;
+		-o-animation-timing-function: ease-out;
+	}
+
+	to {
+		left: 100%;
+	}
+}
+
+@keyframes progressDot {
+	from {
+		left: 0%;
+		animation-timing-function: ease-in
+	}
+
+	40% {
+		left: 33%
+	}
+
+	70% {
+		left: 33%;
+		animation-timing-function: ease-out
+	}
+
+	to {
+		left: 100%
+	}
+}

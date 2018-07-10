@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+  <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script src="./layui.js"></script>
+  <link rel="stylesheet" href="./css/layui.css">
+  <title>MyBootstrap</title>
+
+
+
+<style type="text/css">
+.test{
+    width: 50px;
+    height: 200px;
+    overflow: auto;
+    float: left;
+    margin: 5px;
+    border: none;
+}
+.scrollbar{
+    width: 30px;
+    height: 300px;
+    margin: 0 auto;
+ 
+}
+.h_scroll::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 15px;     /*高宽分别对应横竖滚动条的尺寸*/
+    }
+.h_scroll::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+       /* border-radius: 10px;*/
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: #535353;
+        margin: 4px;
+    }
+.h_scroll::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background: #EDEDED;
+        width:15px;
+    }
+
+#btn{
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background-color: #fff;
+  border: 2px solid #000;
+}
+#btn:hover{
+  background-color: #000;
+  color:#fff;
+ -webkit-transition: all 2s;    
+}
+
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+
+});
+
+</script> 
+</style>
+</head>
+<body>
+
+<div class="test h_scroll">
+  <input type="button" id="btn" value="编辑"/>
+  <div class="scrollbar"></div>
+</div>
+
+
+</body>
+</html>
+
+
+

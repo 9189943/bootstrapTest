@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.js"></script>
+	<script type="text/javascript" src="./js/popper.min.js"></script>
+	<script src="./layui.js"></script>
+  <link rel="stylesheet" href="./css/layui.css">
+  <link rel="stylesheet" href="./progress.css">
+  
+	<title>MyBootstrap</title>
+
+
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+
+});
+
+</script> 
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').click(function(){
+                $(this).next().toggle();
+            });
+            $('.dropdown-item').click(function(){
+                $(this).parent().prev().text($(this).text());
+                $(this).parent().toggle();
+            });
+            $("body").on("click","canvas",function(){
+                $(this).remove();
+                var score = $("#score");
+                if(score.text()){
+                  //alert("1111");
+                  score.text((parseInt((score.text()))+1));
+                  layer.msg(score.text());
+                }else{
+                  $("body").append("<span style='position:fixed;left:20px;top:20px;z-index:1000'>score:<h2 id='score'>1</h2></span>");
+                }    
+            })
+        });
+
+   </script>
+<style type="text/css">
+/*#progress{
+  position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    
+    overflow: hidden;
+}
+#progress div{
+    position: absolute;
+    height: 3px;
+    width: 3px;
+    background-color: #696969;
+    z-index: 100;
+    -webkit-animation: progressDot 2.5s ease-in 0s infinite;
+    -moz-animation: progressDot 2.5s ease-in 0s infinite;
+    -o-animation: progressDot 2.5s ease-in 0s infinite;
+    animation: progressDot 2.5s ease-in 0s infinite;
+}
+#progress div:nth-child(2) {
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+    -o-animation-delay: .1s;
+    animation-delay: .1s;
+}
+#progress div:nth-child(3) {
+    -webkit-animation-delay: .2s;
+    -moz-animation-delay: .2s;
+    -o-animation-delay: .2s;
+    animation-delay: .2s;
+}
+#progress div:nth-child(4) {
+    -webkit-animation-delay: .3s;
+    -moz-animation-delay: .3s;
+    -o-animation-delay: .3s;
+    animation-delay: .3s;
+}
+#progress div:nth-child(5) {
+    -webkit-animation-delay: .4s;
+    -moz-animation-delay: .4s;
+    -o-animation-delay: .4s;
+    animation-delay: .4s;
+}
+#progress div:nth-child(6) {
+    -webkit-animation-delay: .5s;
+    -moz-animation-delay: .5s;
+    -o-animation-delay: .5s;
+    animation-delay: .5s;
+}
+*/
+</style>
+</head>
+<body>
+<div class="progress" id="progress">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+<div class="container">
+
+  <label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 男
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 女
+</label>
+
+  <input type="radio" name="simpleanwser" value="A">选择项A&nbsp;
+  <input type="radio" name="simpleanwser" value="B">选择项B&nbsp;
+  <input type="radio" name="simpleanwser" value="C">选择项C&nbsp;<span class="star">*</span>
+  <div id="raioerr"></div>
+<i class="layui-icon">&#xe677;</i> 
+  <h2>联邦打键盘</h2>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary">Index</button>
+    <button type="button" class="btn btn-primary">About</button>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Select
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Tablet</a>
+        <a class="dropdown-item" href="#">Smartphone</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<canvas id="myCanvas" width="400" height="500" >
+您的浏览器不支持 HTML5 canvas 标签。
+</canvas>
+<script type="text/javascript">
+    var p = 0.1;
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+   // cBigArc(c);
+
+    //大圆
+    function cBigArc(c){
+      var ctx=c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(200,300,200,0,p*Math.PI);
+      ctx.lineWidth="1";
+      ctx.strokeStyle=getRandomColor();
+      ctx.stroke();
+      if(p <= 2){
+        p += 0.05;
+        setTimeout(function(){
+          cBigArc(c);
+        },"30");
+      }else{
+        //ctx.closePath();
+        p = 0.1;
+        lcHalfArc(c);
+        rcHalfArc(c);
+        eyesAndMouth(c);
+      }
+    }
+    function lcHalfArc(c){
+      var ctx=c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(110,280,80,0,1*Math.PI,true);
+      ctx.lineWidth="1";
+      ctx.strokeStyle="#666";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(40,280,10,0,1*Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(180,280,10,0,1*Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(110,280,60,0,1*Math.PI,true);
+      ctx.lineWidth="1";
+      ctx.strokeStyle="#666";
+      ctx.stroke();
+      /**
+      if(p <= 1){
+        p += 0.05;
+        setTimeout("lcHalfArc()","30");
+      }else{
+        //ctx.closePath();
+        p = 0.1;
+        test();
+      }*/
+    }
+    function rcHalfArc(c){
+      var ctx=c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(290,280,80,0,1*Math.PI,true);
+      ctx.lineWidth="1";
+      ctx.strokeStyle="#666";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(220,280,10,0,1*Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(360,280,10,0,1*Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(290,280,60,0,1*Math.PI,true);
+      ctx.lineWidth="1";
+      ctx.strokeStyle="#666";
+      ctx.stroke();
+    }
+    function eyesAndMouth(c){
+      var ctx=c.getContext("2d");
+      //嘴
+      ctx.beginPath();
+      ctx.arc(200,300,180,0,1*Math.PI);
+      ctx.stroke();
+      //眼珠
+      ctx.beginPath();
+      ctx.arc(43,260,8,0,2*Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(223,260,8,0,2*Math.PI);
+      ctx.stroke();
+
+      setTimeout(function(){
+        p = 0.1;
+        var h = window.innerHeight;
+        var w = window.innerWidth
+        console.log(h+","+w);
+        h = Math.ceil(Math.random()*h);
+        w = Math.ceil(Math.random()*w);
+       // h=0;w=0;
+        console.log("h:"+h+",w:"+w);
+        var idname = "myCanvas_"+w+h;
+        $("body").append("<canvas id="+idname+" width='400' height='500' style='position:fixed;left:"+(w-200)+"px;top:"+(h-200)+"px;z-index:1000'>"+
+                          "您的浏览器不支持 HTML5 canvas 标签。"+
+                          "</canvas>");
+        c=document.getElementById(idname);
+        cBigArc(c);
+      },"30");
+
+    }
+
+    //清除画布
+    function clearCanvas()
+    {  
+        var c=document.getElementById("myCanvas");  
+        var cxt=c.getContext("2d");  
+        c.height=c.height;  
+    } 
+    //获取随机颜色 格式 #hex 3or6
+    function getRandomColor(){    
+      return  '#' +    
+        (function(color){    
+        return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])    
+          && (color.length == 6) ?  color : arguments.callee(color);    
+      })('');    
+    }
+
+</script>
+
+
+	<div class="table-responsive">
+	<table class="table">
+		<caption>响应式表格布局</caption>
+		<thead>
+			<tr>
+				<th>产品</th>
+				<th>付款日期</th>
+				<th>状态</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>产品1</td>
+				<td>23/11/2013</td>
+				<td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              待确认
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">发货中</a>
+              <a class="dropdown-item" href="#">已退货</a>
+            </div>
+          </div>
+      </td>
+			</tr>
+			<tr>
+				<td>产品2</td>
+				<td>10/11/2013</td>
+				<td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              待确认
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">发货中</a>
+              <a class="dropdown-item" href="#">已退货</a>
+            </div>
+          </div>
+        </td>
+			</tr>
+			<tr>
+				<td>产品3</td>
+				<td>20/10/2013</td>
+				<td>
+                  <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              待确认
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">发货中</a>
+              <a class="dropdown-item" href="#">已退货</a>
+            </div>
+          </div>
+
+        </td>
+			</tr>
+			<tr>
+				<td>产品4</td>
+				<td>20/10/2013</td>
+				<td>
+                <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              待确认
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">发货中</a>
+              <a class="dropdown-item" href="#">已退货</a>
+            </div>
+          </div>    
+        </td>
+			</tr>
+		</tbody>
+</table>
+</div>  	
+<div class="container">
+   <div class="row" >
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;
+         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+            enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat.
+         </p>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut. 
+         </p>
+      </div>
+
+      <div class="clearfix visible-xs"></div>
+
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;
+         box-shadow:inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+            laboris nisi ut aliquip ex ea commodo consequat. 
+         </p>
+      </div>
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+            enim ad minim 
+         </p>
+      </div>
+   </div>
+</div>
+</body>
+</html>
